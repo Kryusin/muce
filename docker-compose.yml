@@ -21,6 +21,9 @@ services:
     tty: true
     volumes:
       - ./backend:/go/src/work
+    command: go run server.go
+    ports:
+      - 1323:1323
     networks:
       - default
 

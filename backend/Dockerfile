@@ -6,3 +6,6 @@ RUN mkdir /go/src/work
 WORKDIR /go/src/work
 # ホストのファイルをコンテナの作業ディレクトリに移行
 ADD . /go/src/work
+
+RUN go get github.com/labstack/echo/v4
+RUN go get github.com/labstack/echo/v4/middleware

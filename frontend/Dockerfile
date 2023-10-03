@@ -1,7 +1,7 @@
 FROM node:latest
 
 # 作業ディレクトリ
-WORKDIR /var/www
+WORKDIR /app
 
 # ロケールのインストールと設定
 RUN apt update
@@ -16,3 +16,4 @@ RUN apt install -y vim
 
 # create-next-appをインストール
 RUN npm install -g npm@latest && npm install create-next-app
+RUN npm upgrade

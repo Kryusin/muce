@@ -10,7 +10,8 @@ services:
       - 3000:3000
     # プロジェクトディレクトリにマウントする
     volumes:
-      - ./frontend:/var/www
+      - ./frontend:/app
+    command: sh -c "cd muce && npm run dev"
     # ネットワーク
     networks:
       - default

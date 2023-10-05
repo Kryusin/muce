@@ -8,21 +8,27 @@ import (
 )
 
 func main() {
-  // インスタンスを作成
-  e := echo.New()
+	// インスタンスを作成
+	e := echo.New()
 
-  // ミドルウェアを設定
-  e.Use(middleware.Logger())
-  e.Use(middleware.Recover())
+	// ミドルウェアを設定
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
 
-  // ルートを設定
-  e.GET("/", hello) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
+	// ルートを設定
+	e.GET("/", hello) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
+	e.GET("/greet/:id", greet)
 
-  // サーバーをポート番号1323で起動
-  e.Logger.Fatal(e.Start(":1323"))
+	// サーバーをポート番号1323で起動
+	e.Logger.Fatal(e.Start(":1323"))
 }
 
 // ハンドラーを定義
 func hello(c echo.Context) error {
-  return c.String(http.StatusOK, "Hello, World!")
+	return c.String(http.StatusOK, "Hello, World!")
+}
+
+func greet(c echo.Context) error {
+	id := c.Param("id")
+	return c.String(http.StatusOK, id)
 }

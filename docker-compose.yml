@@ -32,6 +32,7 @@ services:
     image: mysql:latest
     container_name: mysql
     restart: always
+    # working_dirs: /database/
     ports:
       - 13306:3306
     environment:
@@ -44,6 +45,7 @@ services:
       - ./mysql/conf.d:/etc/mysql/conf.d
       # DB初期化ディレクトリにマウントする
       - ./mysql/init.d:/docker-entrypoint-initdb.d
+      - ./mysql/create_table.sql:/database/create_table.sql
     # ネットワーク
     networks:
       - default

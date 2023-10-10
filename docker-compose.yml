@@ -8,9 +8,13 @@ services:
     tty: true
     ports:
       - 3000:3000
+    stdin_open: true
     # プロジェクトディレクトリにマウントする
     volumes:
       - ./frontend:/app
+      # - ./frontend/muce/node_modules:/app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
     command: sh -c "cd muce && npm run dev"
     # ネットワーク
     networks:

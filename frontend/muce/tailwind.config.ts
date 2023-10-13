@@ -18,6 +18,7 @@ const config: Config = {
       backgroundColor: {
         'gray-theme': '#F5F5F5',
         'blue-theme': '#227dEE',
+        'orange-theme': '#EE9322',
       },
       fontFamily: {
         'Sedgwick': ["Sedgwick Ave", "cursive"],
@@ -30,9 +31,13 @@ const config: Config = {
       },
       borderColor: {
         'blue-theme': '#227dEE',
+        'orange-theme': '#EE9322',
       },
       borderRadius: {
         '4xl': '30px',
+      },
+      snapType: {
+        'y-mandatory': 'y mandatory',
       },
       animation: {
         'fade-out': 'fadeOut 2s ease 0s 1 forwards',

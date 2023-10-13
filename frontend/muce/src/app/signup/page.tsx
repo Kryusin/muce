@@ -3,7 +3,7 @@ import Account from '@/components/account';// アカウント画面のインポ�
 export default function Signup() {
     return (
         <>
-            <Account props={"新規登録"} />
+            <Account text={"新規登録"} />
         </>
     )
 }

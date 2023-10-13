@@ -27,7 +27,7 @@ export default function Account(props: any) {
                             htmlFor="floatingInput"
                             className="pointer-events-none absolute left-0 top-0 origin-[0_0] px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
                             <div className='flex gap-5'>
-                                <Image src={"/mail.svg"} width={20} height={20} alt="Mail" />
+                                <Image src={"/Mail.svg"} width={20} height={20} alt="Mail" />
                                 <p className='text-gray-theme-2'>メールアドレス</p>
                             </div>
                         </label>
@@ -43,14 +43,14 @@ export default function Account(props: any) {
                             htmlFor="floatingInput"
                             className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
                             <div className='flex gap-5'>
-                                <Image src={"/pass.svg"} width={20} height={20} alt="Pass" />
+                                <Image src={"/Pass.svg"} width={20} height={20} alt="Pass" />
                                 <p className='text-gray-theme-2'>パスワード</p>
                             </div>
                         </label>
                     </div>
                     <div className="mb-7">
                         {/* 新規登録・ログインするボタン */}
-                        <Button props={props.props} />
+                        <Button props={props.text} type="blue" />
                     </div>
                 </form>
                 {/* 新規登録・ログインを促す文言 */}

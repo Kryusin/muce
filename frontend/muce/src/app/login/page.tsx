@@ -3,7 +3,7 @@ import Account from '@/components/account';// アカウント画面のインポ�
 export default function Login() {
     return (
         <>
-            <Account props={"ログイン"} />
+            <Account text={"ログイン"} />
         </>
     )
 }

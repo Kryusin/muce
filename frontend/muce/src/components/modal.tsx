@@ -19,7 +19,7 @@ export default function Modal() {
     }
     return (
         <>
-            <div id='modal' className="block w-full h-full bg-black/70 absolute top-0 left-0">
+            <div id='modal' className="block w-full h-full bg-black/70 absolute top-0 left-0 z-40">
                 <Link href="#" className="block w-full h-full cursor-default" onClick={() => SwitchModal()} />
                 <div className="w-2/5 h5/6 mx-auto mt-6 relative -top-full bg-white font-mono rounded-xl">
                     <div className='flex justify-end items-center pr-6 pt-4'>

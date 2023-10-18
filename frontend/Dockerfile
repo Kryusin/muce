@@ -11,9 +11,6 @@ ENV LC_ALL ja_JP.UTF-8
 ENV TZ JST-9
 ENV TERM xterm
 
-# Vimインストール
-RUN apt install -y vim
-
 # create-next-appをインストール
 RUN npm install -g npm@latest && npm install create-next-app
 RUN npm upgrade

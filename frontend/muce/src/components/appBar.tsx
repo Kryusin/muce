@@ -11,7 +11,7 @@ export default function appBar() {
         setActive(click)
     }
     return (
-        <div className="w-[122px] h-[1024px] absolute left-0 top-0 bg-amber-500">
+        <div className="w-[122px] h-[1024px] fixed left-0 top-0 bg-amber-500">
             <div className="flex pt-[50px] px-[16px] pb-0 flex-col items-center gap-[50px]">
                 {active==0 ? 
                     <div className='flex w-[90px] h-[90px] p-[25px] justify-center items-center bg-white rounded-[30px]'>

@@ -6,8 +6,8 @@ export default function Button(props: any) {
         button = <button className="w-full border-2 border-orange-theme text-orange-theme bg-white rounded-xl h-[58px] hover:bg-orange-theme hover:text-white">{props.props}</button>
     }
     return (
-        <>
+        <div>
             {button}
-        </>
+        </div>
     )
 }

@@ -1,17 +1,18 @@
 import '../globals.css'
 import type { Metadata } from 'next'
+import Loading from '@/components/loading'// ローディング画面のインポート
 
 export const metadata: Metadata = {
-    title: 'MUCE | 設定',
+    title: 'MUCE | チャット',
 }
 
-export default function LoginLayout({
+export default function RootLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
     return (
-        <div className='w-full h-full'>
+        <div>
             {children}
         </div>
     )

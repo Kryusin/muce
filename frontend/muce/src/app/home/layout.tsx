@@ -2,7 +2,7 @@ import '../globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'MUCE | 設定',
+    title: 'MUCE | home',
 }
 
 export default function LoginLayout({

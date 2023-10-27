@@ -84,6 +84,7 @@ export default function Chat() {
                         const usersDoc = doc(collection(db, "Users"), user.join(''))
                         getDoc(usersDoc).then((ud) => {
                             newUserData = [...newUserData, ud.data()]
+                            console.log(newUserData)
                             setUserData(newUserData)
                         })
                         setChatData(newChatList)
@@ -119,7 +120,7 @@ export default function Chat() {
                 }
             </div>
             <div className="flex-col overflow-y-auto h-screen hide-scroll-bar">
-                {chatData && chatData.map((cd: any, i: number) => {
+                {chatData.length && userData.length && chatData.map((cd: any, i: number) => {
                     console.log(userData)
                     return (
                         <ChatUI

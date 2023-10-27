@@ -1,10 +1,27 @@
 'use client'
 import AppBar from "@/components/appBar"
 import ChatUI from "@/components/chat"
-import { useState } from "react"
+import { getAuth } from "firebase/auth";// Firebase Authのインポート
+import { initializeFirebaseApp, db } from '@/firebase/client'
+import { collection, getDocs, getDoc, limit, doc, orderBy, query } from 'firebase/firestore';
+import { useState, useEffect } from "react"
+import dayjs from 'dayjs'
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import ja from 'dayjs/locale/ja';
+initializeFirebaseApp()// Firebaseの初期化
+dayjs.locale(ja);
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 export default function Chat() {
     const [tab, setTab] = useState([true, false])
+    const [currentUser, setCurrentUser]: any = useState([])
+    const [userData, setUserData]: any = useState([])
+    const [chatData, setChatData]: any = useState([])// チャットのデータ
+
+    const auth = getAuth();// Firebase Authのインスタンス
     const changetab = (e: any) => {
         if (e.target.innerHTML == '個人') {
             setTab([true, false])
@@ -12,6 +29,70 @@ export default function Chat() {
             setTab([false, true])
         }
     }
+    const GetDateDiff = (to: dayjs.Dayjs) => {
+        to = dayjs(to).tz()
+        const from = dayjs().tz();
+        const year = from.diff(to, 'year')
+        const month = from.diff(to, 'month')
+        const day = from.diff(to, 'day')
+        const hour = from.diff(to, 'hour')
+        const minute = from.diff(to, 'minute')
+        const second = from.diff(to, 'second')
+        let dateDiff: string = ''
+        if (month >= 12) {
+            dateDiff = `${year}年`
+        } else if (day >= 30) {
+            dateDiff = `${month}ヶ月`
+        } else if (hour >= 24) {
+            dateDiff = `${day}日`
+        } else if (minute >= 60) {
+            dateDiff = `${hour}時間`
+        } else if (second >= 60) {
+            dateDiff = `${minute}分`
+        } else {
+            dateDiff = `${second}秒`
+        }
+        return dateDiff;
+
+    };
+    useEffect(() => {
+        // ログイン状態をウォッチ
+        let unsubscribe = auth.onAuthStateChanged((user: any) => {
+            if (user) {
+                // ログインしている
+                setCurrentUser(user)
+                // どっか遷移
+            }
+            unsubscribe()
+        })
+    }, [auth])
+
+    useEffect(() => {
+        let newChatList: any = []
+        let newUserData: any = []
+        const chatDocs = getDocs(collection(db, "Chat"))
+        chatDocs.then((chatDoc) => {
+            chatDoc.forEach((cd) => {
+                const user = cd.data().user.filter(item => item !== currentUser.uid)
+                if (cd.data().user.includes(currentUser.uid)) {
+                    const messageQuery = query(collection(db, "Chat", cd.id, "Message"), orderBy("created_at", "desc"), limit(1))
+                    const messageDocs = getDocs(messageQuery)
+                    messageDocs.then((messageDoc) => {
+                        messageDoc.forEach((md) => {
+                            newChatList = [...newChatList, md.data()]
+                        })
+                        const usersDoc = doc(collection(db, "Users"), user.join(''))
+                        getDoc(usersDoc).then((ud) => {
+                            newUserData = [...newUserData, ud.data()]
+                            setUserData(newUserData)
+                        })
+                        setChatData(newChatList)
+                    })
+                }
+            })
+        })
+    }, [currentUser])
+
     return (
         <div>
             <AppBar />
@@ -38,18 +119,18 @@ export default function Chat() {
                 }
             </div>
             <div className="flex-col overflow-y-auto h-screen hide-scroll-bar">
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
-                <ChatUI name="勝田" src="/User.svg" message="Auto Gun Herosせん？笑笑" time="2分" />
+                {chatData && chatData.map((cd: any, i: number) => {
+                    console.log(userData)
+                    return (
+                        <ChatUI
+                            key={i}
+                            name={userData[i].name}
+                            src={userData[i].icon}
+                            message={cd.message}
+                            time={GetDateDiff(cd.created_at.toDate())}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

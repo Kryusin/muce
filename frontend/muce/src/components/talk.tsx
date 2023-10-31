@@ -6,7 +6,6 @@ export default function Talk(props: any) {
             {props.type == 'my' ?
                 <div className="flex justify-end items-center gap-2 h-16">
                     <div className='flex-col text-xs font-semibold'>
-                        <p>既読</p>
                         <p>{props.time}</p>
                     </div>
                     <div className="flex-col justify-center items-center pr-5">

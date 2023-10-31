@@ -19,6 +19,7 @@ const config: Config = {
         'gray-theme': '#F5F5F5',
         'blue-theme': '#227dEE',
         'orange-theme': '#EE9322',
+        'black-theme': '#4D4D4D',
       },
       fontFamily: {
         'Sedgwick': ["Sedgwick Ave", "cursive"],

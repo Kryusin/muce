@@ -73,18 +73,19 @@ export default function Chat() {
         const chatDocs = getDocs(collection(db, "Chat"))
         chatDocs.then((chatDoc) => {
             chatDoc.forEach((cd) => {
-                const user = cd.data().user.filter(item => item !== currentUser.uid)
+                const user = cd.data().uid.filter(item => item !== currentUser.uid)
                 if (cd.data().user.includes(currentUser.uid)) {
                     const messageQuery = query(collection(db, "Chat", cd.id, "Message"), orderBy("created_at", "desc"), limit(1))
                     const messageDocs = getDocs(messageQuery)
                     messageDocs.then((messageDoc) => {
                         messageDoc.forEach((md) => {
-                            newChatList = [...newChatList, md.data()]
+                            const item = md.data()
+                            item.id = cd.id
+                            newChatList = [...newChatList, item]
                         })
                         const usersDoc = doc(collection(db, "Users"), user.join(''))
                         getDoc(usersDoc).then((ud) => {
                             newUserData = [...newUserData, ud.data()]
-                            console.log(newUserData)
                             setUserData(newUserData)
                         })
                         setChatData(newChatList)
@@ -121,10 +122,10 @@ export default function Chat() {
             </div>
             <div className="flex-col overflow-y-auto h-screen hide-scroll-bar">
                 {chatData.length && userData.length && chatData.map((cd: any, i: number) => {
-                    console.log(userData)
                     return (
                         <ChatUI
                             key={i}
+                            id={cd.id}
                             name={userData[i].name}
                             src={userData[i].icon}
                             message={cd.message}

@@ -5,7 +5,6 @@ import ChatHistory from "@/components/chatHistory"
 export default function Home() {
     return (
         <div className="relative">
-            <AppBar />
             <div className="relative left-[226px] top-[30px] flex flex-col gap-[76px]">
                 <Profile />
                 <ChatHistory />

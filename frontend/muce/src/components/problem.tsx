@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function problem() {
     const questions = [
         {
@@ -80,7 +82,7 @@ export default function problem() {
                     <></>
                 )}
                 <div className="w-full flex flex-row justify-end">
-                    <button className="px-[20px] py-[10px] bg-[#227DEE] text-white font-bold text-[18px] rounded-[10px]">判定する</button>
+                    <Link href="/judgement" className="px-[20px] py-[10px] bg-[#227DEE] text-white font-bold text-[18px] rounded-[10px]">判定する</Link>
                 </div>
             </div>
         </div>

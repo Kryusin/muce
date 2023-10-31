@@ -14,7 +14,6 @@ export default function Chat() {
     }
     return (
         <div>
-            <AppBar />
             <div className="flex justify-center items-center h-10 bg-gray-300 font-mono font-medium rounded drop-shadow-lg text-gray-800 ml-[170px] mr-[50px] mt-[30px] mb-[20px] text-lg">
                 {tab[0]
                     ?//個人ON

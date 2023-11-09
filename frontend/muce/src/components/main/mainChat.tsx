@@ -74,7 +74,7 @@ export default function Chat() {
         chatDocs.then((chatDoc) => {
             chatDoc.forEach((cd) => {
                 const user = cd.data().uid.filter(item => item !== currentUser.uid)
-                if (cd.data().user.includes(currentUser.uid)) {
+                if (cd.data().uid.includes(currentUser.uid)) {
                     const messageQuery = query(collection(db, "Chat", cd.id, "Message"), orderBy("created_at", "desc"), limit(1))
                     const messageDocs = getDocs(messageQuery)
                     messageDocs.then((messageDoc) => {
@@ -96,7 +96,7 @@ export default function Chat() {
     }, [currentUser])
 
     return (
-        <div>
+        <div className="w-[1460px]">
             <div className="flex justify-center items-center h-10 bg-gray-300 font-mono font-medium rounded drop-shadow-lg text-gray-800 ml-[170px] mr-[50px] mt-[30px] mb-[20px] text-lg">
                 {tab[0]
                     ?//個人ON

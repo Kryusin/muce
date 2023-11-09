@@ -1,4 +1,6 @@
+'use client'
 import Link from "next/link";
+import {useEffect, useState} from "react";
 
 export default function problem() {
     const questions = [
@@ -54,37 +56,44 @@ export default function problem() {
         }
     ];
 
+    const [load, setLoad] = useState(true);
+
+
     return (
         <div className="relative left-[226px] top-[30px] flex flex-col gap-[76px] w-[1120px] bg-white p-[40px] shadow-[0_0_20px_0_rgba(0,0,0,0.3)] rounded-[20px]">
-            <div className="w-full text-center">
-                <span className="border-b-4 border-solid border-[#EE9322] font-bold text-[30px]">問題</span>
-            </div>
-            <div className="flex flex-col gap-[50px] w-full">
-                {questions ? (
-                    questions.map((que, i) => (
-                        <div key={i} className="flex flex-col gap-[50px] w-full">
-                            <span className="font-bold text-[20px]">Q{i + 1}.{que["q"]}</span>
-                            <div className="w-full">
-                                <div className="w-full flex flex-wrap gap-[40px] items-center justify-center">
-                                    {que["options"].map((option, j) => (
-                                        <div key={j}>
-                                            <input type="radio" id={`${i}-${j}`} className="questionbutton input-radio" name={`${i}`} />
-                                            <label htmlFor={`${i}-${j}`} className="question-label">
-                                                {option}
-                                            </label>
+            {load && (
+                <>
+                    <div className="w-full text-center">
+                        <span className="border-b-4 border-solid border-[#EE9322] font-bold text-[30px]">問題</span>
+                    </div>
+                    <div className="flex flex-col gap-[50px] w-full">
+                        {questions ? (
+                            questions.map((que, i) => (
+                                <div key={i} className="flex flex-col gap-[50px] w-full">
+                                    <span className="font-bold text-[20px]">Q{i + 1}.{que["q"]}</span>
+                                    <div className="w-full">
+                                        <div className="w-full flex flex-wrap gap-[40px] items-center justify-center">
+                                            {que["options"].map((option, j) => (
+                                                <div key={j}>
+                                                    <input type="radio" id={`${i}-${j}`} className="questionbutton input-radio" name={`${i}`} />
+                                                    <label htmlFor={`${i}-${j}`} className="question-label">
+                                                        {option}
+                                                    </label>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
+                                    </div>
                                 </div>
-                            </div>
+                            ))
+                        ) : (
+                            <></>
+                        )}
+                        <div className="w-full flex flex-row justify-end">
+                            <Link href="/app/judgement" className="px-[20px] py-[10px] bg-[#227DEE] text-white font-bold text-[18px] rounded-[10px]">判定する</Link>
                         </div>
-                    ))
-                ) : (
-                    <></>
-                )}
-                <div className="w-full flex flex-row justify-end">
-                    <Link href="/judgement" className="px-[20px] py-[10px] bg-[#227DEE] text-white font-bold text-[18px] rounded-[10px]">判定する</Link>
-                </div>
-            </div>
+                    </div>
+                </>
+             )}
         </div>
     );
 };

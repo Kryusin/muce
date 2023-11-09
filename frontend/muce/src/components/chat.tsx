@@ -5,7 +5,7 @@ export default function Chat(props: any) {
     const router = useRouter()
     const toDatail = (e: any) => {
         e.preventDefault()
-        router.push(`/chat/${props.id}`)
+        router.push(`/app/chat/${props.id}`)
     }
     return (
         <div className="flex justify-start items-center drop-shadow-2xl h-[110px] bg-white rounded-lg ml-[170px] mr-[50px] mt-[10px] cursor-pointer" onClick={(e) => toDatail(e)}>

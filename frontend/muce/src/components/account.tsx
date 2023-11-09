@@ -3,6 +3,7 @@
 import Image from 'next/image'// Next/imageのインポート
 import Link from "next/link";//Linkコンポーネントのインポート
 import { useState, useEffect } from 'react';// useStateのインポート
+import { useRouter } from "next/navigation"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";// Firebase Authのインポート
 import { initializeFirebaseApp, db } from '@/firebase/client'
 import { setDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
@@ -19,6 +20,7 @@ export default function Account(props: any) {
     const [email, setEmail] = useState('');// メールアドレスのstate
     const [password, setPassword] = useState('');// パスワードのstate
     const [errorMsg, setErrorMsg] = useState('');// エラーメッセージのstate
+    const router = useRouter();
 
     const auth = getAuth();// Firebase Authのインスタンス
 
@@ -52,6 +54,7 @@ export default function Account(props: any) {
                         updated_at: serverTimestamp(),
                     })
                     console.log(user.uid);
+                    router.push('/app')
                 })
                 .catch((error) => {
                     if (error.code === 'auth/invalid-email') {
@@ -117,7 +120,7 @@ export default function Account(props: any) {
             }
 
             <div className="drop-shadow-2xl w-1/3 bg-white rounded-4xl mx-auto px-8 py-8 my-12">
-                <Link href="/">
+                <Link href="/production">
                     <Image src="/muceLogo.svg" alt='logo' width={140} height={40} className='bg-white mx-auto ' />
                 </Link>
                 <form>

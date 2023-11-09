@@ -75,35 +75,36 @@ export default function Judgement(props:any) {
     }, [count])
 
     return (
-        <div className="w-[1120px] flex p-[40px] flex-col justify-center items-start gap-[20px] shadow-[0_0_20px_0_rgba(0,0,0,0.3)] rounded-[20px]">
-            <div className="w-full flex justify-center">
-                <span className="font-bold text-[24px]">あなたの正答率は<span className='text-[32px] text-amber-500 mx-[20px]' id="percent"></span>です。</span>
-            </div>
-            <div className="w-full h-[50px] bg-gray-200 rounded-[50px] relative">
-                <div id="ans-bar" className='absolute h-full bg-amber-500 rounded-[50px]'>
+        <div className="w-full flex justify-center items-center">
+            <div className="w-[1120px] flex p-[40px] flex-col justify-center items-start gap-[20px] shadow-[0_0_20px_0_rgba(0,0,0,0.3)] rounded-[20px]">
+                <div className="w-full flex justify-center">
+                    <span className="font-bold text-[24px]">あなたの正答率は<span className='text-[32px] text-amber-500 mx-[20px]' id="percent"></span>です。</span>
                 </div>
-            </div>
-            <div className='w-full text-center'>
-                <span className='font-bold text-[25px]'>解答</span>
-            </div>
-                {questions.map((ques,i) => (
-                    !result[i] ? (
-                        <div key={i} className="w-full flex flex-col p-[40px] bg-[#31ED5A]/30 rounded-[20px] justify-center items-center gap-[20px]">
-                            <div className="w-full flex flex-col gap-[20px]">
-                                <div className="flex justify-center">
-                                    <Image src="/clear.svg" alt='clear' width={68} height={68} />
+                <div className="w-full h-[50px] bg-gray-200 rounded-[50px] relative">
+                    <div id="ans-bar" className='absolute h-full bg-amber-500 rounded-[50px]'>
+                    </div>
+                </div>
+                <div className='w-full text-center'>
+                    <span className='font-bold text-[25px]'>解答</span>
+                </div>
+                    {questions.map((ques,i) => (
+                        !result[i] ? (
+                            <div key={i} className="w-full flex flex-col p-[40px] bg-[#31ED5A]/30 rounded-[20px] justify-center items-center gap-[20px]">
+                                <div className="w-full flex flex-col gap-[20px]">
+                                    <div className="flex justify-center">
+                                        <Image src="/clear.svg" alt='clear' width={68} height={68} />
+                                    </div>
+                                    <span className='font-bold text-[25px]'>Q{i+1}: {ques["q"]}</span>
                                 </div>
-                                <span className='font-bold text-[25px]'>Q{i+1}: {ques["q"]}</span>
+                                <div className="w-full flex justify-center">
+                                    <span className="font-bold text-[25px]">あなたの回答　{my_ans[i]}</span>
+                                </div>
+                                <div className="w-full flex justify-center">
+                                    <span className='font-bold text-[25px]'>正解</span>
+                                    <span className='font-bold text-[25px]'>{ques["answer"]}</span>
+                                </div>
                             </div>
-                            <div className="w-full flex justify-center">
-                                <span className="font-bold text-[25px]">あなたの回答　{my_ans[i]}</span>
-                            </div>
-                            <div className="w-full flex justify-center">
-                                <span className='font-bold text-[25px]'>正解</span>
-                                <span className='font-bold text-[25px]'>{ques["answer"]}</span>
-                            </div>
-                        </div>
-                    ) : (
+                        ) : (
                             <div key={i} className="w-full flex flex-col p-[40px] bg-[#EC0C0C]/30 rounded-[20px] justify-center items-center gap-[20px]">
                                 <div className="w-full flex flex-col gap-[20px]">
                                     <div className="flex justify-center">
@@ -119,8 +120,12 @@ export default function Judgement(props:any) {
                                     <span className='font-bold text-[25px]'>{ques["answer"]}</span>
                                 </div>
                             </div>
-                    )
-                ))}
+                        )
+                    ))}
+                <div className='w-full flex justify-end mt-10'>
+                    <a href="/app" class="w-[100px] h-[50px] rounded-[8px] bg-blue-400 text-white font-bold text-[24px] flex justify-center items-center">戻る</a>
+                </div>
+            </div>
         </div>
     );
 };

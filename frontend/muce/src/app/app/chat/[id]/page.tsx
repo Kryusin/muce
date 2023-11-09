@@ -51,6 +51,7 @@ export default function Chat(props: any) {
             scroll()
         }
     }
+
     const fetchData = useCallback(async () => {
         const userDoc = doc(collection(db, 'Chat'), props.params.id);
         const ud = await getDoc(userDoc);
@@ -99,7 +100,7 @@ export default function Chat(props: any) {
     return (
         <>
             <AppBar />
-            <div className="flex-row px-44 w-screen h-screen justify-end items-center fixed">
+            <div className="absolute left-40 flex-row w-[1200px] h-screen justify-end items-center">
                 <div className='h-12 flex items-center bg-transparent'>
                     {userData.length !== 0 && userData.map((ud: any, i: number) => {
                         return (

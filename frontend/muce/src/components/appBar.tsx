@@ -27,7 +27,7 @@ export default function appBar() {
                         <Image src="/personActive.svg" width={40} height={40} alt='home' />
                     </div>
                     :
-                    <Link href="/home">
+                    <Link href="/app">
                         <Image src="/person.svg" width={40} height={40} alt='home' onClick={() => setActive(0)}/>
                     </Link>
                 }
@@ -36,7 +36,7 @@ export default function appBar() {
                         <Image src="/chatActive.svg" width={40} height={40} alt='chat' />
                     </div>
                     :
-                    <Link href="/chat">
+                    <Link href="/app">
                         <Image src="/chat.svg" width={40} height={40} alt='chat' onClick={() => setActive(1)} />
                     </Link>
                 }
@@ -45,7 +45,7 @@ export default function appBar() {
                         <Image src="/bookActive.svg" width={40} height={40} alt='book' />
                     </div>
                     :
-                    <Link href="/question">
+                    <Link href="/app">
                         <Image src="/book.svg" width={40} height={40} alt='book' onClick={() => setActive(2)} />
                     </Link>
                 }
@@ -54,7 +54,7 @@ export default function appBar() {
                         <Image src="/settingActive.svg" width={40} height={40} alt='setting' />
                     </div>
                     :
-                    <Link href="/setting">
+                    <Link href="/app">
                         <Image src="/setting.svg" width={40} height={40} alt='setting' onClick={() => setActive(3)} />
                     </Link>
                 }

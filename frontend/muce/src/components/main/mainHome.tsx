@@ -1,4 +1,4 @@
-import AppBar from "@/components/appBar"
+import AppBar from "@/components/AppBar"
 import Profile from "@/components/profile"
 import ChatHistory from "@/components/chatHistory"
 

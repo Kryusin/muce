@@ -1,5 +1,5 @@
 'use client'
-import AppBar from "@/components/appBar"
+import AppBar from "@/components/AppBar"
 import ChatUI from "@/components/chat"
 import { getAuth } from "firebase/auth";// Firebase Authのインポート
 import { initializeFirebaseApp, db } from '@/firebase/client'

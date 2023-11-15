@@ -1,4 +1,4 @@
-import AppBar from "@/components/appBar"
+import AppBar from "@/components/AppBar"
 import Judgement from "@/app/app/judgement/page"
 
 export default function Judgment() {

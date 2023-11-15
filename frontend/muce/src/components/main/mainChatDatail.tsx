@@ -17,7 +17,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
-export default function Chat(props: any) {
+export default function ChatDatail(props: any) {
     const scroll = () => {
         const chatElement: any = document.querySelector('#chatElement')
         chatElement.scrollTo(0, chatElement.scrollHeight)
@@ -51,9 +51,8 @@ export default function Chat(props: any) {
             scroll()
         }
     }
-
     const fetchData = useCallback(async () => {
-        const userDoc = doc(collection(db, 'Chat'), props.params.id);
+        const userDoc = doc(collection(db, 'Chat'), props.id);
         const ud = await getDoc(userDoc);
         console.log("ud", ud.data());
         let newUserData: any = []
@@ -99,8 +98,7 @@ export default function Chat(props: any) {
 
     return (
         <>
-            <AppBar />
-            <div className="absolute left-40 flex-row w-[1200px] h-screen justify-end items-center">
+            <div className="flex-row px-44 w-screen h-screen justify-end items-center fixed">
                 <div className='h-12 flex items-center bg-transparent'>
                     {userData.length !== 0 && userData.map((ud: any, i: number) => {
                         return (

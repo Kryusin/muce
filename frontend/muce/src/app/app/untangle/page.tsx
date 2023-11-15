@@ -1,4 +1,4 @@
-import AppBar from "@/components/appBar"
+import AppBar from "@/components/AppBar"
 import Problem from "@/components/problem"
 
 export default function Question() {

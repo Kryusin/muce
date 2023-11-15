@@ -1,3 +1,4 @@
+'use client'
 import Top from '@/components/top'// トップ画面のインポート
 import Circle from '@/components/circle'// 円のインポート
 import Image from 'next/image'// NextImageのインポート

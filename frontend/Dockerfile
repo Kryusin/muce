@@ -13,4 +13,5 @@ ENV TERM xterm
 
 # create-next-appをインストール
 RUN npm install -g npm@latest && npm install create-next-app
+RUN npm install
 RUN npm upgrade

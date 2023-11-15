@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image'// NextImageのインポート
-import {useState} from "react"
+import { useState } from "react"
 import Home from "@/components/main/mainHome";
 import Chat from '@/components/main/mainChat';
+import Search from '@/components/main/mainSearch';
 import Question from '@/components/main/mainQuestion';
 import Setting from '@/components/main/mainSetting';
 
@@ -25,28 +26,37 @@ export default function Index() {
           }
           {active == 1 ?
             <div className='flex w-[90px] h-[90px] p-[25px] justify-center items-center bg-white rounded-[30px]'>
-              <Image src="/chatActive.svg" width={40} height={40} alt='chat' />
+              <Image src="/searchActive.svg" width={40} height={40} alt='chat' />
             </div>
             :
-            <div className='cursor-pointer' onClick={() => (setActive(1))}>
-              <Image src="/chat.svg" width={40} height={40} alt='chat' />
+            <div className='cursor-pointer'>
+              <Image src="/search.svg" width={40} height={40} alt='chat' onClick={() => setActive(1)} />
             </div>
           }
           {active == 2 ?
+            <div className='flex w-[90px] h-[90px] p-[25px] justify-center items-center bg-white rounded-[30px]'>
+              <Image src="/chatActive.svg" width={40} height={40} alt='chat' />
+            </div>
+            :
+            <div className='cursor-pointer' onClick={() => (setActive(2))}>
+              <Image src="/chat.svg" width={40} height={40} alt='chat' />
+            </div>
+          }
+          {active == 3 ?
             <div className='flex w-[90px] h-[90px] p-[25px] justify-center items-center bg-white rounded-[30px] '>
               <Image src="/bookActive.svg" width={40} height={40} alt='book' />
             </div>
             :
-            <div className='cursor-pointer' onClick={() => (setActive(2))}>
+            <div className='cursor-pointer' onClick={() => (setActive(3))}>
               <Image src="/book.svg" width={40} height={40} alt='book' />
             </div>
           }
-          {active == 3 ?
+          {active == 4 ?
             <div className='flex w-[90px] h-[90px] p-[25px] justify-center items-center bg-white rounded-[30px]'>
               <Image src="/settingActive.svg" width={40} height={40} alt='setting' />
             </div>
             :
-            <div className="cursor-pointer" onClick={() => (setActive(3))}>
+            <div className="cursor-pointer" onClick={() => (setActive(4))}>
               <Image src="/setting.svg" width={40} height={40} alt='setting' />
             </div>
           }
@@ -56,10 +66,12 @@ export default function Index() {
         {active == 0 ? (
           <Home />
         ) : active == 1 ? (
-          <Chat />
+          <Search />
         ) : active == 2 ? (
+          <Chat />
+        ) : active == 3 ? (
           <Question />
-        ) : active == 3 && (
+        ) : active == 4 && (
           <Setting />
         )}
       </div>

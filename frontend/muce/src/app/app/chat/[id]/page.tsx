@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Talk from '@/components/talk'
-import AppBar from '@/components/AppBar'
 import { useEffect, useState, useCallback } from 'react'
 import { getAuth } from "firebase/auth";// Firebase Authのインポート
 import { collection, query, orderBy, getDocs, doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
@@ -99,7 +98,6 @@ export default function Chat(props: any) {
 
     return (
         <>
-            <AppBar />
             <div className="absolute left-40 flex-row w-[1200px] h-screen justify-end items-center">
                 <div className='h-12 flex items-center bg-transparent'>
                     {userData.length !== 0 && userData.map((ud: any, i: number) => {
